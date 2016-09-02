@@ -15,7 +15,7 @@ mkdir pepipost-sdk-java
 
 cd pepipost-sdk-java
 
-git clone https://github.com/pepipost-sdk-java .
+git clone https://github.com/pepipost/pepipost-sdk-java.git .
 
 mvn install
 
