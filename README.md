@@ -74,11 +74,11 @@ public class Example {
 ```
 Compile the Example.java
 ```
-javac -cp '.:target/swagger-java-client-1.0.0.jar:target/lib/*' Example.java
+javac -cp '.:target/pepipost-sdk-java-1.0.0.jar:target/lib/*' Example.java
 ```
 Now run
 ```
-java -cp '.:target/swagger-java-client-1.0.0.jar:target/lib/*' Example
+java -cp '.:target/pepipost-sdk-java-1.0.0.jar:target/lib/*' Example
 ```
 
 To get your api key, you need to signup at [Pepipost.com](http://pepipost.com/)
