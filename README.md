@@ -87,7 +87,7 @@ To get your api key, you need to signup at [Pepipost.com](http://pepipost.com/)
 
 For API documentation, please visit the below url:
 
-[**docs.pepipost.com**](docs/EmailApi.md#apiWebSendJsonPost) 
+[**docs.pepipost.com**](https://docs.pepipost.com/send.web.json/) 
 
 
 ## Recommendation
