@@ -1,103 +1,208 @@
-# Pepipost Java SDK
+![pepipostlogo](https://pepipost.com/assets/img/pepipost-footLogo.png)
 
-This is a JavaSDK/Client for Pepipost's API.
+[![Twitter Follow](https://img.shields.io/twitter/follow/pepi_post.svg?style=social&label=Follow)](https://twitter.com/pepi_post)
 
-## Requirements
+# Official Java library :coffee: for [Pepipost](http://www.pepipost.com/?utm_campaign=GitHubSDK&utm_medium=GithubSDK&utm_source=GithubSDK)
 
-Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
+This library contains methods for easily interacting with the Pepipost Email Sending API to send emails within few seconds.
 
-## Installation
+We are trying to make our libraries Community Driven- which means we need your help in building the right things in proper order we would request you to help us by sharing comments, creating new [issues](https://github.com/pepipost/pepipost-sdk-java/issues) or [pull requests](https://github.com/pepipost/pepipost-sdk-java/pulls).
 
+We welcome any sort of contribution to this library.
 
-```shell
+The latest 2.5.0 version of this library provides is fully compatible with the latest Pepipost v2.0 API.
 
-mkdir pepipost-sdk-java
+For any update of this library check [Releases](https://github.com/pepipost/pepipost-sdk-java/releases).
 
-cd pepipost-sdk-java
+# Table of Content
+  
+* [Installation](#installation)
+* [Quick Start](#quick-start)
+* [Usage of library in Project](#inproject)
+* [Sample Example](#eg)
+* [Announcements](#announcements)
+* [Roadmap](#roadmap)
+* [About](#about)
+* [License](#license)
 
-git clone https://github.com/pepipost/pepipost-sdk-java.git .
+<a name="installation"></a>
+# Installation
 
-mvn install
+<a name="prereq"></a>
+## Prerequisites
+* Java version Oracle JDK 7, 8 or OpenJDK 7
+* Java Maven Dependencies
+  * Jackson
+  * UniRest
+  * Apache HttpClient
+* Java Development Enviromment (IDE).
+* A free account on Pepipost. If you don't have a one, click [here]((https://app.pepipost.com/index.php/signup/registeruser?utm_campaign=GitHubSDK&utm_medium=GithubSDK&utm_source=GithubSDK)) to signup and get 30,000 emails free every month.
 
-```
+<a name="quickstart"></a>
+## Quick Start
 
-Now create the Example.java (put the values of API key, email, etc as per your requirements)
+This Java library uses few Maven Dependencies ([mentioned above](#prereq)). The reference to these dependencies are added in pom.xml file which will be installed automatically. Just need internet access for successful build.
+
+* [Download zip](https://github.com/pepipost/pepipost-sdk-java/archive/master.zip) or get a clone for the pepipost repository using 
+
+  ``` git clone https://github.com/pepipost/pepipost-sdk-java.git ```
+
+* In order to open the client library in Eclipse click on ``` File -> Import ```.
+
+  ![Importing SDK into Eclipse - Step 1](https://apidocs.io/illustration/java?step=import0&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+* In the import dialog, select ``` Existing Java Project ``` and click ``` Next ```.
+
+  ![Importing SDK into Eclipse - Step 2](https://apidocs.io/illustration/java?step=import1&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+* Browse to locate the folder containing the source code. Select the detected location of the project and click ``` Finish ```.
+
+  ![Importing SDK into Eclipse - Step 3](https://apidocs.io/illustration/java?step=import2&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+* Upon successful import, the project will be automatically built by Eclipse after automatically resolving the dependencies.
+
+  ![Importing SDK into Eclipse - Step 4](https://apidocs.io/illustration/java?step=import3&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+<a name="inproject"></a>
+### Usage of Pepipost library in project
+
+1. Starting a new project
+
+   * Click the menu command ``` File > New > Project ```.
+
+     ![Add a new project in Eclipse](https://apidocs.io/illustration/java?step=createNewProject0&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+   * Choose ``` Maven > Maven Project ```.
+   
+   * Click ``` Next ```.
+
+     ![Create a new Maven Project - Step 1](https://apidocs.io/illustration/java?step=createNewProject1&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+   * Here, make sure to use the current workspace by choosing ``` Use default Workspace location ```, as shown in the screenshot below.
+   
+   * Click ``` Next ```.
+
+     ![Create a new Maven Project - Step 2](https://apidocs.io/illustration/java?step=createNewProject2&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+   * Select the *quick start* project type to create a simple project with an existing class.
+   * A ``` main ``` method. 
+   * To do this, choose ``` maven-archetype-quickstart ``` item from the list.
+   * Click ``` Next ```.
+
+     ![Create a new Maven Project - Step 3](https://apidocs.io/illustration/java?step=createNewProject3&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+   * In the last step, provide a ``` Group Id ```.and ``` Artifact Id ``` as shown in the picture below.
+   * Click ``` Finish ```.
+
+     ![Create a new Maven Project - Step 4](https://apidocs.io/illustration/java?step=createNewProject4&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+2. Add reference of the library project
+
+   * The created Maven project manages its dependencies using its ``` pom.xml ``` file.
+   * In order to add a dependency on the **PepipostLib** client library, double click on the ``` pom.xml ``` file in the ``` Package Explorer ```. 
+   * Opening the ``` pom.xml ``` file will render a graphical view on the canvas.
+   * Here, switch to the ``` Dependencies ``` tab.
+   * Click the ``` Add ``` button as shown in the picture below.
+
+     ![Adding dependency to the client library - Step 1](https://apidocs.io/illustration/java?step=testProject0&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+   * Click the ``` Add ``` button. A dialog will open, where you need to specify Pepipost in ``` Group Id ``` and PepipostLib in the ``` Artifact Id ``` fields.
+   * Once added click ``` OK ```. 
+   * Save the ``` pom.xml ``` file.
+
+     ![Adding dependency to the client library - Step 2](https://apidocs.io/illustration/java?step=testProject1&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+3. Getting started with code
+
+   * Once the ``` SimpleConsoleApp ``` is created, a file named ``` App.java ``` will be visible in the *Package Explorer* with a ``` main ``` method. 
+   * This is the entry point for the execution of the created project.
+
+     ![Adding dependency to the client library - Step 2](https://apidocs.io/illustration/java?step=testProject2&workspaceFolder=pepipost-Java&workspaceName=Pepipost&projectName=PepipostLib&rootNamespace=com.pepipost.api)
+
+<a name="eg"></a>
+## Sample Usage
 
 ```java
-
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.EmailApi;
-
-import java.io.File;
+package testApp.SimpleConsoleApp;
+import com.pepipost.api.*;
+import com.pepipost.api.models.*;
+import com.pepipost.api.controllers.*;
+import com.pepipost.api.http.client.*;
 import java.util.*;
+import java.io.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
-public class Example {
+public class App {
 
-    public static void main(String[] args) {
-        //Getting the SDK object
-        EmailApi pepipostSDK = new EmailApi();
+    public static void main(String[] args) throws JsonProcessingException {
 
-        //Getting the data object
-        Emailv1 data = new Emailv1(); // Emailv1 | Data in JSON format
+        PepipostClient client = new PepipostClient();
 
-        //setting the apikey
-        data.setApiKey("yoursecretapikey");
+        EmailController emailController = client.getEmail();
+        String apiKey = "my-api-here";
+        EmailBody body = new EmailBody();
 
-        //setting the data
-        EmailDetails email_details = new EmailDetails(); // Emailv1 | Data in JSON format
-        email_details.setFromname("yourfromname");
-        email_details.setFrom("from@example.com");
-        email_details.subject("This is the test email subject sent via Pepipost Java SDK");
-        email_details.setContent("<p> hi, this is a test email sent via Pepipost Java SDK using its JSON API.</p>");
-        data.setEmailDetails(email_details);
+        body.setPersonalizations(new LinkedList<Personalizations>());
+        Personalizations body_personalizations_0 = new Personalizations();
 
-        //adding recipients
-        List<String> recipients = new ArrayList<String>();
-        recipients.add("to@example.com");
-        data.setRecipients(recipients);
+        body_personalizations_0.setRecipient("your-rcpt_email@gmail.com");
+        body.getPersonalizations().add(body_personalizations_0);
+        body.setTags("tagsjava");
+        body.setFrom(new From());
 
-        //making the call
-        try {
-            pepipostSDK.apiWebSendJsonPost(data);
-            System.out.println("Email sent successfully.");
-        } catch (ApiException e) {
-            System.out.println("Exception occurred while calling Pepipost API");
-            System.out.println("Errormessage("+e.getMessage()+")");
-            System.out.println("Errorcode("+e.getCode()+")");
-            //e.printStackTrace();
-        }
+        body.getFrom().setFromEmail("my-verified-domain@m3m.in");
+        body.getFrom().setFromName("info");
+        body.setSubject("JAVA SDK");
+        body.setContent("Test mail ready to sent");
+        body.setSettings(new Settings());
+
+        body.getSettings().setFooter(0);
+        body.getSettings().setClicktrack(1);
+        body.getSettings().setOpentrack(1);
+        body.getSettings().setUnsubscribe(1);
+        
+
+        emailController.createSendEmailAsync(apiKey, body, new APICallBack<SendEmailResponse>() {
+            public void onSuccess(HttpContext context, SendEmailResponse response) {
+                // TODO success callback handler
+            	System.out.print("Message :: " + response.getMessage() + "\n" + "Error :: " + response.getErrorInfo().getErrorMessage());
+            }
+            public void onFailure(HttpContext context, Throwable error) {
+            	System.out.print(context.getResponse());
+            }
+            
+         });
     }
 }
 
 ```
-Compile the Example.java
+* Change your api-key and sending domain respectively
+  * **apikey** will be available under Login to Pepipost -> Settings -> Integration  
+  * **Sending Domain** will be available under Login to Pepiost -> Settings -> Sending Domains 
+  
 ```
-javac -cp '.:target/pepipost-sdk-java-1.0.0.jar:target/lib/*' Example.java
+  *Note :: Domains showing with Active status on Sending Domain dashboard are only allowed to send any sort of emails.* In case there are no Sending Domain added under your account, then first add the domain, get the DNS (SPF/DKIM) settings done and get it reviewed by our compliance team for approval. Once the domain is approved, it will be in ACTIVE status and will be ready to send any sort of emails. 
 ```
-Now run
-```
-java -cp '.:target/pepipost-sdk-java-1.0.0.jar:target/lib/*' Example
-```
+* Run your project
 
-To get your api key, you need to signup at [Pepipost.com](http://pepipost.com/)
+<a name="announcements"></a>
+# Announcements
 
-## Documentation for API Endpoints
+v2.5.0 has been released! Please see the [release notes](https://github.com/pepipost/pepipost-sdk-java/releases/) for details.
 
-For API documentation, please visit the below url:
+All updates to this library are documented in our [releases](https://github.com/pepipost/pepipost-sdk-java/releases). For any queries, feel free to reach out us at dx@pepipost.com
 
-[**docs.pepipost.com**](https://docs.pepipost.com/send.web.json/) 
+<a name="roadmap"></a>
+## Roadmap
 
+If you are interested in the future direction of this project, please take a look at our open [issues](https://github.com/pepipost/pepipost-sdk-java/issues) and [pull requests](https://github.com/pepipost/pepipost-sdk-java/pulls). We would love to hear your feedback.
 
-## Recommendation
+<a name="about"></a>
+## About
+pepipost-sdk-java library is guided and supported by the [Pepipost Developer Experience Team](https://github.com/orgs/pepipost/teams/pepis/members) .
+This pepipost library is maintained and funded by Pepipost Ltd. The names and logos for pepipost gem are trademarks of Pepipost Ltd.
 
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issue.
-
-## Author
-[Tabby](http://github.com/itabrezshaikh)
-
-Thanks to Swagger Codegen Project. This library has been semi-automatically generated using [swagger codegen project](https://github.com/swagger-api/swagger-codegen)
-
-
+<a name="license"></a>
+## License
+This code library was semi-automatically generated by APIMATIC v2.0 and licensed under The MIT License (MIT).
 
