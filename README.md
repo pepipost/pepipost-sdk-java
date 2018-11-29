@@ -186,8 +186,8 @@ public class App {
 ```
 * Run your project
 
-<a name="announcements"></a>
-# S3 Sample
+<a name="s3"></a>
+## S3 Sample
 
 ```java
 import java.util.ArrayList;
@@ -214,21 +214,21 @@ public class TesterDriver
 	public static void main ( String [ ] args ) throws APIException
 	{
 		
-		PepipostClient client = new PepipostClient();
-
-      EmailController emailController = client.getEmail();
-      String apiKey = "my-api-here";
-      EmailBody body = new EmailBody();
-
-     	body.setPersonalizations(new LinkedList<Personalizations>());
-      Personalizations body_personalizations_0 = new Personalizations();
-
-      body_personalizations_0.setRecipient("your-rcpt_email@gmail.com");
+		PepipostClient client = new PepipostClient( );
+		
+		EmailController emailController = client.getEmail( );
+		String apiKey = "my-api-here";
+		EmailBody body = new EmailBody( );
+		
+		body.setPersonalizations( new LinkedList< Personalizations >( ) );
+		Personalizations body_personalizations_0 = new Personalizations( );
+		
+		body_personalizations_0.setRecipient( "your-rcpt_email@gmail.com" );
 		body.getPersonalizations( ).add( body_personalizations_0 );
 		body.setTags( "tagsjava" );
 		body.setFrom( new From( ) );
 		
-		body.getFrom( ).setFromEmail( "info@pepisandbox.com" );
+		body.getFrom( ).setFromEmail( "my-verified-domain@m3m.in" );
 		body.getFrom( ).setFromName( "info" );
 		body.setSubject( "JAVA SDK 3.0 w/ AWS ok encrypted content." );
 		body.setContent( "Test mail ready to sent" );
