@@ -186,8 +186,8 @@ public class App {
 ```
 * Run your project
 
-<a name="announcements"></a>
-# S3 Sample
+<a name="s3"></a>
+## S3 Sample
 
 ```java
 import java.util.ArrayList;
