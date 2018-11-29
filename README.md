@@ -187,7 +187,11 @@ public class App {
 * Run your project
 
 <a name="s3"></a>
+<<<<<<< HEAD
 ## S3 Sample 
+=======
+## S3 Sample
+>>>>>>> branch 'S3_feature_addition' of https://github.com/chaudharydeepak/pepipost-sdk-java.git
 
 ```java
 import java.util.ArrayList;
