@@ -48,10 +48,11 @@ public class EmailController extends BaseController {
      */
     public SendEmailResponse createSendEmail(
                 final String apiKey,
-                final EmailBody body
+                final EmailBody body,
+                final String apiVersion
     ) throws Throwable {
         APICallBackCatcher<SendEmailResponse> callback = new APICallBackCatcher<SendEmailResponse>();
-        createSendEmailAsync(apiKey, body, callback);
+        createSendEmailAsync(apiKey, body,apiVersion,callback);
         if(!callback.isSuccess())
             throw callback.getError();
         return callback.getResult();
@@ -66,6 +67,7 @@ public class EmailController extends BaseController {
     public void createSendEmailAsync(
                 final String apiKey,
                 final EmailBody body,
+                final String apiVersion,
                 final APICallBack<SendEmailResponse> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -75,7 +77,7 @@ public class EmailController extends BaseController {
 
                 //prepare query string for API call
                 StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-                _queryBuilder.append("/v2/sendEmail");
+                _queryBuilder.append(apiVersion);
                 //validate and preprocess url
                 String _queryUrl = APIHelper.cleanUrl(_queryBuilder);
 
