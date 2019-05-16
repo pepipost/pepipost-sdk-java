@@ -20,6 +20,7 @@ For any update of this library check [Releases](https://github.com/pepipost/pepi
 * [Quick Start](#quick-start)
 * [Usage of library in Project](#inproject)
 * [Sample Example](#eg)
+* [S3 Sample Example](#s3)
 * [Announcements](#announcements)
 * [Roadmap](#roadmap)
 * [About](#about)
@@ -184,6 +185,154 @@ public class App {
   *Note :: Domains showing with Active status on Sending Domain dashboard are only allowed to send any sort of emails.* In case there are no Sending Domain added under your account, then first add the domain, get the DNS (SPF/DKIM) settings done and get it reviewed by our compliance team for approval. Once the domain is approved, it will be in ACTIVE status and will be ready to send any sort of emails. 
 ```
 * Run your project
+
+<a name="s3"></a>
+## S3 Sample 
+
+```java
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.pepipost.api.PepipostClient;
+import com.pepipost.api.attachementProvider.AttachSourceProvider;
+import com.pepipost.api.attachementProvider.S3AttachSourceProvider;
+import com.pepipost.api.controllers.EmailController;
+import com.pepipost.api.exceptions.APIException;
+import com.pepipost.api.http.client.APICallBack;
+import com.pepipost.api.http.client.HttpContext;
+import com.pepipost.api.models.EmailBody;
+import com.pepipost.api.models.FileObjects;
+import com.pepipost.api.models.From;
+import com.pepipost.api.models.Personalizations;
+import com.pepipost.api.models.SendEmailResponse;
+import com.pepipost.api.models.Settings;
+
+public class TesterDriver
+{
+	
+	public static void main ( String [ ] args ) throws APIException
+	{
+		
+		PepipostClient client = new PepipostClient( );
+		
+		EmailController emailController = client.getEmail( );
+		String apiKey = "my-api-here";
+		EmailBody body = new EmailBody( );
+		
+		body.setPersonalizations( new LinkedList< Personalizations >( ) );
+		Personalizations body_personalizations_0 = new Personalizations( );
+		
+		body_personalizations_0.setRecipient( "your-rcpt_email@gmail.com" );
+		body.getPersonalizations( ).add( body_personalizations_0 );
+		body.setTags( "tagsjava" );
+		body.setFrom( new From( ) );
+		
+		body.getFrom( ).setFromEmail( "my-verified-domain@m3m.in" );
+		body.getFrom( ).setFromName( "info" );
+		body.setSubject( "JAVA SDK 3.0 w/ AWS ok encrypted content." );
+		body.setContent( "Test mail ready to sent" );
+		body.setSettings( new Settings( ) );
+		
+		/* list of files in specific bucket. */
+		// 2 files in same bucket. They have no encryption applied.
+		List< String > filesList = new ArrayList< String >( );
+		filesList.add( "jcp.PNG" );
+		filesList.add( "dlfine.pdf" );
+		FileObjects fileObjects_1 = new FileObjects( "pepipostawsinteg", filesList );
+		fileObjects_1.setEncyrptionType( "NONE" );
+		
+		// 2 files in same bucket. They have no encryption applied.
+		List< String > filesList_2 = new ArrayList< String >( );
+		filesList_2.add( "BW_MEMO2-typeable.pdf" );
+		filesList_2.add( "baz.enc" );
+		// filesList_2.add( "Microservices_Patterns_v11.pdf" );
+		FileObjects fileObjects_2 = new FileObjects( "myotherbucketforpepi", filesList_2 );
+		fileObjects_2.setEncyrptionType( "NONE" );
+		
+		// A file in a bucket. Before uploading, the file was encyrpted using
+		// AWS KMS key with AWS S3 SDK.
+		// hence we need respective client to download / decrypt the data before
+		// document is email attach ready.
+		List< String > kms_encryptedFileList = new ArrayList< String >( );
+		kms_encryptedFileList.add( "enc_file_kms.txt" );
+		FileObjects kms_enc_files = new FileObjects( "myotherbucketforpepi", kms_encryptedFileList );
+		kms_enc_files.setEncyrptionType( "AWSKMS" );
+		kms_enc_files.setKms_cmk_id( "7c232025-9498-4959-83e5-153345e50ee5" );
+		
+		// A file in a bucket. Before uploading, the file was encyrpted using
+		// AES Symmetric key with AWS S3 SDK.
+		// hence we need respective client to download / decrypt the data before
+		// document is email attach ready.
+		List< String > aes_encryptedFileList = new ArrayList< String >( );
+		aes_encryptedFileList.add( "enc_file_aes256.txt" );
+		FileObjects aes_enc_files = new FileObjects( "myotherbucketforpepi", aes_encryptedFileList );
+		aes_enc_files.setEncyrptionType( "AES" );
+		aes_enc_files.setPath_to_keys( System.getProperty( "java.io.tmpdir" ) );
+		aes_enc_files.setAes_master_keyName( "secret.key" );
+		
+		// A file in a bucket. Before uploading, the file was encyrpted using
+		// RSA Asymmetric keys(pub / private) with AWS S3 SDK.
+		// hence we need respective client to download / decrypt the data before
+		// document is email attach ready.
+		List< String > rsa_encryptedFileList = new ArrayList< String >( );
+		rsa_encryptedFileList.add( "enc_file_rsa10241.txt" );
+		FileObjects rsa_enc_files = new FileObjects( "myotherbucketforpepi", rsa_encryptedFileList );
+		rsa_enc_files.setEncyrptionType( "RSA" );
+		rsa_enc_files.setPath_to_keys( System.getProperty( "java.io.tmpdir" ) );
+		rsa_enc_files.setRsa_pub_keyName( "public.key" );
+		rsa_enc_files.setRsa_pvt_keyName( "private.key" );
+		
+		/* list of all buckets. User might use multiple buckets. */
+		List< FileObjects > fileObjectsList = new ArrayList< FileObjects >( );
+		fileObjectsList.add( fileObjects_1 );
+		fileObjectsList.add( fileObjects_2 );
+		fileObjectsList.add( kms_enc_files );
+		fileObjectsList.add( aes_enc_files );
+		fileObjectsList.add( rsa_enc_files );
+		
+		AttachSourceProvider awsSourceProvider = null;
+		
+		try
+		{
+			/*
+			 * invoke source provider per region. For different regions,
+			 * instantiate seperate sourceProvider instances. do not mix
+			 * fileObjectsList for different regions. They need seperate auth.
+			 */
+			awsSourceProvider = new S3AttachSourceProvider( "us-east-2", 10 );
+			body.setAttachments( awsSourceProvider.getFileObjects( fileObjectsList ) );
+		}
+		catch ( APIException apiEx )
+		{
+			throw apiEx;
+		}
+		
+		body.getSettings( ).setFooter( 0 );
+		body.getSettings( ).setClicktrack( 1 );
+		body.getSettings( ).setOpentrack( 1 );
+		body.getSettings( ).setUnsubscribe( 1 );
+		
+		emailController.createSendEmailAsync( apiKey, body, new APICallBack< SendEmailResponse >( )
+		{
+			public void onSuccess ( HttpContext context, SendEmailResponse response )
+			{
+				// TODO success callback handler
+				System.out.print( "Message :: " + response.getMessage( ) + "\n" + "Error :: "
+				        + response.getErrorInfo( ).getErrorMessage( ) );
+			}
+			
+			public void onFailure ( HttpContext context, Throwable error )
+			{
+				System.out.print( context.getResponse( ) );
+			}
+			
+		} );
+	}
+	
+}
+```
+
 
 <a name="announcements"></a>
 # Announcements
