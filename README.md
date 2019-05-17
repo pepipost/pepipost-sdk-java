@@ -313,7 +313,7 @@ public class TesterDriver
 		body.getSettings( ).setOpentrack( 1 );
 		body.getSettings( ).setUnsubscribe( 1 );
 		
-		emailController.createSendEmailAsync( apiKey, body, new APICallBack< SendEmailResponse >( )
+		emailController.createSendEmailAsync( apiKey, body,"/v2/sendEmail",new APICallBack< SendEmailResponse >( )
 		{
 			public void onSuccess ( HttpContext context, SendEmailResponse response )
 			{
