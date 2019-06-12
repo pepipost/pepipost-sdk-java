@@ -1,4 +1,4 @@
-![pepipostlogo](https://pepipost.com/assets/img/pepipost-footLogo.png)
+![pepipostlogo](https://pepipost.com/wp-content/uploads/2017/07/P_LOGO.png)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/pepi_post.svg?style=social&label=Follow)](https://twitter.com/pepi_post)
 
