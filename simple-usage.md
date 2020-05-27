@@ -20,7 +20,7 @@ public class App {
     public static void main(String[] args) throws JsonProcessingException {
         
         PepipostClient client = new PepipostClient();
-        SendController sendController = client.getSend();
+        MailSendController mailSendController = client.getMailSend();
         Configuration.apiKey = "your api_key here";
         Send body = new Send();
         
@@ -47,7 +47,7 @@ public class App {
         
         body.getPersonalizations().add(body_personalizations_0);
         
-        sendController.createGenerateTheMailSendRequestAsync(body, new APICallBack<Object>() {
+        mailSendController.createGeneratethemailsendrequestAsync(body, new APICallBack<Object>() {
             public void onSuccess(HttpContext context, Object response) {
                 
             	System.out.println(response.toString());

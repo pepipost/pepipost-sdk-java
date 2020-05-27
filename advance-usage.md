@@ -19,7 +19,8 @@ public class App {
     public static void main(String[] args) throws IOException {
         
         PepipostClient client = new PepipostClient();
-        SendController sendController = client.getSend();
+        
+        MailSendController mailSendController = client.getMailSend();
         Configuration.apiKey = "your api_key here";
         Send body = new Send();
         body.setReplyTo("you-reply-to-id-address@mydomain.name");
@@ -130,8 +131,7 @@ public class App {
         body_bcc_0.setEmail("random-bcc@mydomain.name");
         body.getBcc().add(body_bcc_0);
         
-        
-        sendController.createGenerateTheMailSendRequestAsync(body, new APICallBack<Object>() {
+        mailSendController.createGeneratethemailsendrequestAsync(body, new APICallBack<Object>() {
             public void onSuccess(HttpContext context, Object response) {
                 
             	System.out.println(response.toString());
