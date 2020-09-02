@@ -8,7 +8,7 @@ package com.pepipost.api;
 
 public class Configuration {
     //The base Uri for API calls
-    public static String baseUri = "https://api.pepipost.com/v5";
+    public static String baseUri = "https://api.pepipost.com/v5.1";
 
     //Your Pepipost API Key. You will find the api key in the Pepipost application in Integrations.
     //TODO: Replace the apiKey with an appropriate value

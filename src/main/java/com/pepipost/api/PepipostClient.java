@@ -58,6 +58,14 @@ public class PepipostClient {
     }
 
     /**
+     * Singleton access to SubaccountsGetcreditddetails controller
+     * @return	Returns the SubaccountsGetcreditddetailsController instance 
+     */
+    public SubaccountsGetcreditddetailsController getSubaccountsGetcreditddetails() {
+        return SubaccountsGetcreditddetailsController.getInstance();
+    }
+
+    /**
      * Singleton access to Setrecurringcreditddetails controller
      * @return	Returns the SetrecurringcreditddetailsController instance 
      */
@@ -103,6 +111,22 @@ public class PepipostClient {
      */
     public DomainDeleteController getDomainDelete() {
         return DomainDeleteController.getInstance();
+    }
+
+    /**
+     * Singleton access to DomainGetDomains controller
+     * @return	Returns the DomainGetDomainsController instance 
+     */
+    public DomainGetDomainsController getDomainGetDomains() {
+        return DomainGetDomainsController.getInstance();
+    }
+
+    /**
+     * Singleton access to Template controller
+     * @return	Returns the TemplateController instance 
+     */
+    public TemplateController getTemplate() {
+        return TemplateController.getInstance();
     }
 
     /**
