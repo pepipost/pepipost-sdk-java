@@ -46,23 +46,23 @@ public class DomainDeleteController extends BaseController {
      * @param    body    Required parameter: delete domain
      * @return    Returns the Object response from the API call 
      */
-    public Object deleteDomain(
-                final DeleteDomain body
+    public Object deletedomain(
+                final Deletedomain body
     ) throws Throwable {
 
-        HttpRequest _request = _buildDeleteDomainRequest(body);
+        HttpRequest _request = _buildDeletedomainRequest(body);
         HttpResponse _response = getClientInstance().executeAsString(_request);
         HttpContext _context = new HttpContext(_request, _response);
 
-        return _handleDeleteDomainResponse(_context);
+        return _handleDeletedomainResponse(_context);
     }
 
     /**
      * This endpoint allows you to delete a domain from your Pepipost account.
      * @param    body    Required parameter: delete domain
      */
-    public void deleteDomainAsync(
-                final DeleteDomain body,
+    public void deletedomainAsync(
+                final Deletedomain body,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -70,7 +70,7 @@ public class DomainDeleteController extends BaseController {
 
                 HttpRequest _request;
                 try {
-                    _request = _buildDeleteDomainRequest(body);
+                    _request = _buildDeletedomainRequest(body);
                 } catch (Exception e) {
                     callBack.onFailure(null, e);
                     return;
@@ -80,7 +80,7 @@ public class DomainDeleteController extends BaseController {
                 getClientInstance().executeAsStringAsync(_request, new APICallBack<HttpResponse>() {
                     public void onSuccess(HttpContext _context, HttpResponse _response) {
                         try {
-                            Object returnValue = _handleDeleteDomainResponse(_context);
+                            Object returnValue = _handleDeletedomainResponse(_context);
                             callBack.onSuccess(_context, returnValue);
                         } catch (Exception e) {
                             callBack.onFailure(_context, e);
@@ -100,10 +100,10 @@ public class DomainDeleteController extends BaseController {
     }
 
     /**
-     * Builds the HttpRequest object for deleteDomain
+     * Builds the HttpRequest object for deletedomain
      */
-    private HttpRequest _buildDeleteDomainRequest(
-                final DeleteDomain body) throws IOException, APIException {
+    private HttpRequest _buildDeletedomainRequest(
+                final Deletedomain body) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 
@@ -131,10 +131,10 @@ public class DomainDeleteController extends BaseController {
     }
 
     /**
-     * Processes the response for deleteDomain
+     * Processes the response for deletedomain
      * @return An object of type Object
      */
-    private Object _handleDeleteDomainResponse(HttpContext _context)
+    private Object _handleDeletedomainResponse(HttpContext _context)
             throws APIException, IOException {
         HttpResponse _response = _context.getResponse();
 

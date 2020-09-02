@@ -46,22 +46,22 @@ public class DomainController extends BaseController {
      * @param    body    Required parameter: Add new domain
      * @return    Returns the Object response from the API call 
      */
-    public Object addDomain(
+    public Object adddomain(
                 final DomainStruct body
     ) throws Throwable {
 
-        HttpRequest _request = _buildAddDomainRequest(body);
+        HttpRequest _request = _buildAdddomainRequest(body);
         HttpResponse _response = getClientInstance().executeAsString(_request);
         HttpContext _context = new HttpContext(_request, _response);
 
-        return _handleAddDomainResponse(_context);
+        return _handleAdddomainResponse(_context);
     }
 
     /**
      * This endpoint enables you to add a sending domain which is one of the pre-requisites for sending emails.
      * @param    body    Required parameter: Add new domain
      */
-    public void addDomainAsync(
+    public void adddomainAsync(
                 final DomainStruct body,
                 final APICallBack<Object> callBack
     ) {
@@ -70,7 +70,7 @@ public class DomainController extends BaseController {
 
                 HttpRequest _request;
                 try {
-                    _request = _buildAddDomainRequest(body);
+                    _request = _buildAdddomainRequest(body);
                 } catch (Exception e) {
                     callBack.onFailure(null, e);
                     return;
@@ -80,7 +80,7 @@ public class DomainController extends BaseController {
                 getClientInstance().executeAsStringAsync(_request, new APICallBack<HttpResponse>() {
                     public void onSuccess(HttpContext _context, HttpResponse _response) {
                         try {
-                            Object returnValue = _handleAddDomainResponse(_context);
+                            Object returnValue = _handleAdddomainResponse(_context);
                             callBack.onSuccess(_context, returnValue);
                         } catch (Exception e) {
                             callBack.onFailure(_context, e);
@@ -100,9 +100,9 @@ public class DomainController extends BaseController {
     }
 
     /**
-     * Builds the HttpRequest object for addDomain
+     * Builds the HttpRequest object for adddomain
      */
-    private HttpRequest _buildAddDomainRequest(
+    private HttpRequest _buildAdddomainRequest(
                 final DomainStruct body) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
@@ -131,10 +131,10 @@ public class DomainController extends BaseController {
     }
 
     /**
-     * Processes the response for addDomain
+     * Processes the response for adddomain
      * @return An object of type Object
      */
-    private Object _handleAddDomainResponse(HttpContext _context)
+    private Object _handleAdddomainResponse(HttpContext _context)
             throws APIException, IOException {
         HttpResponse _response = _context.getResponse();
 

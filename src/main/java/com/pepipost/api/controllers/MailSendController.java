@@ -146,12 +146,14 @@ public class MailSendController extends BaseController {
         //Error handling using HTTP status codes
         int _responseCode = _response.getStatusCode();
 
-        if (_responseCode == 400 || _responseCode == 401 || _responseCode == 403) {
-          //extract result from the http response
-            String _responseBody = ((HttpStringResponse)_response).getBody();
-            Object _result = _responseBody;
-
-            return _result;
+        if (_responseCode == 400) {
+            throw new APIException("API Response", _context);
+        }
+        if (_responseCode == 401) {
+            throw new APIException("API Response", _context);
+        }
+        if (_responseCode == 403) {
+            throw new APIException("API Response", _context);
         }
         if (_responseCode == 405) {
             throw new APIException("Invalid input", _context);

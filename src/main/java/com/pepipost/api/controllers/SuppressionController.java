@@ -46,23 +46,23 @@ public class SuppressionController extends BaseController {
      * @param    body    Required parameter: add email or domain to suppression list
      * @return    Returns the Object response from the API call 
      */
-    public Object addDomainOrEmailToSuppressionList(
-                final AddEmailOrDomainToSuppressionList body
+    public Object adddomainoremailtosuppressionlist(
+                final AddemailordomaintoSuppressionlist body
     ) throws Throwable {
 
-        HttpRequest _request = _buildAddDomainOrEmailToSuppressionListRequest(body);
+        HttpRequest _request = _buildAdddomainoremailtosuppressionlistRequest(body);
         HttpResponse _response = getClientInstance().executeAsString(_request);
         HttpContext _context = new HttpContext(_request, _response);
 
-        return _handleAddDomainOrEmailToSuppressionListResponse(_context);
+        return _handleAdddomainoremailtosuppressionlistResponse(_context);
     }
 
     /**
      * This API allows you to suppress an email address and block any future email delivery attempts on this email address.
      * @param    body    Required parameter: add email or domain to suppression list
      */
-    public void addDomainOrEmailToSuppressionListAsync(
-                final AddEmailOrDomainToSuppressionList body,
+    public void adddomainoremailtosuppressionlistAsync(
+                final AddemailordomaintoSuppressionlist body,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -70,7 +70,7 @@ public class SuppressionController extends BaseController {
 
                 HttpRequest _request;
                 try {
-                    _request = _buildAddDomainOrEmailToSuppressionListRequest(body);
+                    _request = _buildAdddomainoremailtosuppressionlistRequest(body);
                 } catch (Exception e) {
                     callBack.onFailure(null, e);
                     return;
@@ -80,7 +80,7 @@ public class SuppressionController extends BaseController {
                 getClientInstance().executeAsStringAsync(_request, new APICallBack<HttpResponse>() {
                     public void onSuccess(HttpContext _context, HttpResponse _response) {
                         try {
-                            Object returnValue = _handleAddDomainOrEmailToSuppressionListResponse(_context);
+                            Object returnValue = _handleAdddomainoremailtosuppressionlistResponse(_context);
                             callBack.onSuccess(_context, returnValue);
                         } catch (Exception e) {
                             callBack.onFailure(_context, e);
@@ -100,10 +100,10 @@ public class SuppressionController extends BaseController {
     }
 
     /**
-     * Builds the HttpRequest object for addDomainOrEmailToSuppressionList
+     * Builds the HttpRequest object for adddomainoremailtosuppressionlist
      */
-    private HttpRequest _buildAddDomainOrEmailToSuppressionListRequest(
-                final AddEmailOrDomainToSuppressionList body) throws IOException, APIException {
+    private HttpRequest _buildAdddomainoremailtosuppressionlistRequest(
+                final AddemailordomaintoSuppressionlist body) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 
@@ -131,10 +131,10 @@ public class SuppressionController extends BaseController {
     }
 
     /**
-     * Processes the response for addDomainOrEmailToSuppressionList
+     * Processes the response for adddomainoremailtosuppressionlist
      * @return An object of type Object
      */
-    private Object _handleAddDomainOrEmailToSuppressionListResponse(HttpContext _context)
+    private Object _handleAdddomainoremailtosuppressionlistResponse(HttpContext _context)
             throws APIException, IOException {
         HttpResponse _response = _context.getResponse();
 
@@ -173,23 +173,23 @@ public class SuppressionController extends BaseController {
      * @param    body    Required parameter: remove email or domain to suppression list
      * @return    Returns the Object response from the API call 
      */
-    public Object removeDomainOrEmailToSuppressionList(
-                final RemoveEmailOrDomainToSuppressionList body
+    public Object removedomainoremailtosuppressionlist(
+                final RemoveemailordomaintoSuppressionlist body
     ) throws Throwable {
 
-        HttpRequest _request = _buildRemoveDomainOrEmailToSuppressionListRequest(body);
+        HttpRequest _request = _buildRemovedomainoremailtosuppressionlistRequest(body);
         HttpResponse _response = getClientInstance().executeAsString(_request);
         HttpContext _context = new HttpContext(_request, _response);
 
-        return _handleRemoveDomainOrEmailToSuppressionListResponse(_context);
+        return _handleRemovedomainoremailtosuppressionlistResponse(_context);
     }
 
     /**
      * Use this API to remove an email address or a recipient domain from the suppression list. You can remove multiple email addresses and recipient domains together by passing them as values & separating them using commas as shown below.
      * @param    body    Required parameter: remove email or domain to suppression list
      */
-    public void removeDomainOrEmailToSuppressionListAsync(
-                final RemoveEmailOrDomainToSuppressionList body,
+    public void removedomainoremailtosuppressionlistAsync(
+                final RemoveemailordomaintoSuppressionlist body,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -197,7 +197,7 @@ public class SuppressionController extends BaseController {
 
                 HttpRequest _request;
                 try {
-                    _request = _buildRemoveDomainOrEmailToSuppressionListRequest(body);
+                    _request = _buildRemovedomainoremailtosuppressionlistRequest(body);
                 } catch (Exception e) {
                     callBack.onFailure(null, e);
                     return;
@@ -207,7 +207,7 @@ public class SuppressionController extends BaseController {
                 getClientInstance().executeAsStringAsync(_request, new APICallBack<HttpResponse>() {
                     public void onSuccess(HttpContext _context, HttpResponse _response) {
                         try {
-                            Object returnValue = _handleRemoveDomainOrEmailToSuppressionListResponse(_context);
+                            Object returnValue = _handleRemovedomainoremailtosuppressionlistResponse(_context);
                             callBack.onSuccess(_context, returnValue);
                         } catch (Exception e) {
                             callBack.onFailure(_context, e);
@@ -227,10 +227,10 @@ public class SuppressionController extends BaseController {
     }
 
     /**
-     * Builds the HttpRequest object for removeDomainOrEmailToSuppressionList
+     * Builds the HttpRequest object for removedomainoremailtosuppressionlist
      */
-    private HttpRequest _buildRemoveDomainOrEmailToSuppressionListRequest(
-                final RemoveEmailOrDomainToSuppressionList body) throws IOException, APIException {
+    private HttpRequest _buildRemovedomainoremailtosuppressionlistRequest(
+                final RemoveemailordomaintoSuppressionlist body) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 
@@ -258,10 +258,10 @@ public class SuppressionController extends BaseController {
     }
 
     /**
-     * Processes the response for removeDomainOrEmailToSuppressionList
+     * Processes the response for removedomainoremailtosuppressionlist
      * @return An object of type Object
      */
-    private Object _handleRemoveDomainOrEmailToSuppressionListResponse(HttpContext _context)
+    private Object _handleRemovedomainoremailtosuppressionlistResponse(HttpContext _context)
             throws APIException, IOException {
         HttpResponse _response = _context.getResponse();
 

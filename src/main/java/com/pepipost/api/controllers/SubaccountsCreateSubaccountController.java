@@ -47,7 +47,7 @@ public class SubaccountsCreateSubaccountController extends BaseController {
      * @return    Returns the Object response from the API call 
      */
     public Object createSubaccountsCreateSubaccountPOST(
-                final CreateSubaccount body
+                final Createsubaccount body
     ) throws Throwable {
 
         HttpRequest _request = _buildCreateSubaccountsCreateSubaccountPOSTRequest(body);
@@ -62,7 +62,7 @@ public class SubaccountsCreateSubaccountController extends BaseController {
      * @param    body    Required parameter: create sub account
      */
     public void createSubaccountsCreateSubaccountPOSTAsync(
-                final CreateSubaccount body,
+                final Createsubaccount body,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -103,7 +103,7 @@ public class SubaccountsCreateSubaccountController extends BaseController {
      * Builds the HttpRequest object for createSubaccountsCreateSubaccountPOST
      */
     private HttpRequest _buildCreateSubaccountsCreateSubaccountPOSTRequest(
-                final CreateSubaccount body) throws IOException, APIException {
+                final Createsubaccount body) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 

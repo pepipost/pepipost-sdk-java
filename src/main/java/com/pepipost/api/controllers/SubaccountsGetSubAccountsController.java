@@ -42,16 +42,14 @@ public class SubaccountsGetSubAccountsController extends BaseController {
 
     /**
      * Lets you fetch all the subaccounts created by you
-     * @param    limit    Required parameter: Example: 
-     * @param    offset    Required parameter: Example: 
+     * @param    username    Required parameter: Example: 
      * @return    Returns the Object response from the API call 
      */
     public Object getSubaccountsGetSubAccountsGET(
-                final String limit,
-                final String offset
+                final String username
     ) throws Throwable {
 
-        HttpRequest _request = _buildGetSubaccountsGetSubAccountsGETRequest(limit, offset);
+        HttpRequest _request = _buildGetSubaccountsGetSubAccountsGETRequest(username);
         HttpResponse _response = getClientInstance().executeAsString(_request);
         HttpContext _context = new HttpContext(_request, _response);
 
@@ -60,12 +58,10 @@ public class SubaccountsGetSubAccountsController extends BaseController {
 
     /**
      * Lets you fetch all the subaccounts created by you
-     * @param    limit    Required parameter: Example: 
-     * @param    offset    Required parameter: Example: 
+     * @param    username    Required parameter: Example: 
      */
     public void getSubaccountsGetSubAccountsGETAsync(
-                final String limit,
-                final String offset,
+                final String username,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -73,7 +69,7 @@ public class SubaccountsGetSubAccountsController extends BaseController {
 
                 HttpRequest _request;
                 try {
-                    _request = _buildGetSubaccountsGetSubAccountsGETRequest(limit, offset);
+                    _request = _buildGetSubaccountsGetSubAccountsGETRequest(username);
                 } catch (Exception e) {
                     callBack.onFailure(null, e);
                     return;
@@ -106,8 +102,7 @@ public class SubaccountsGetSubAccountsController extends BaseController {
      * Builds the HttpRequest object for getSubaccountsGetSubAccountsGET
      */
     private HttpRequest _buildGetSubaccountsGetSubAccountsGETRequest(
-                final String limit,
-                final String offset) throws IOException, APIException {
+                final String username) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 
@@ -116,8 +111,7 @@ public class SubaccountsGetSubAccountsController extends BaseController {
 
         //process query parameters
         Map<String, Object> _queryParameters = new HashMap<String, Object>();
-        _queryParameters.put("limit", limit);
-        _queryParameters.put("offset", offset);
+        _queryParameters.put("username", username);
         APIHelper.appendUrlWithQueryParameters(_queryBuilder, _queryParameters);
         //validate and preprocess url
         String _queryUrl = APIHelper.cleanUrl(_queryBuilder);

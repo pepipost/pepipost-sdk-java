@@ -8,7 +8,6 @@ package com.pepipost.api.controllers;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.pepipost.api.*;
 import com.pepipost.api.models.*;
@@ -21,20 +20,20 @@ import com.pepipost.api.http.response.HttpStringResponse;
 import com.pepipost.api.http.client.APICallBack;
 import com.pepipost.api.controllers.syncwrapper.APICallBackCatcher;
 
-public class SubaccountsController extends BaseController {
+public class TemplateController extends BaseController {
     //private static variables for the singleton pattern
     private static final Object syncObject = new Object();
-    private static SubaccountsController instance = null;
+    private static TemplateController instance = null;
 
     /**
      * Singleton pattern implementation 
-     * @return The singleton instance of the SubaccountsController class 
+     * @return The singleton instance of the TemplateController class 
      */
-    public static SubaccountsController getInstance() {
+    public static TemplateController getInstance() {
         if (null == instance) {
             synchronized (syncObject) {
                 if (null == instance) {
-                    instance = new SubaccountsController();
+                    instance = new TemplateController();
                 }
             }
         }
@@ -42,27 +41,27 @@ public class SubaccountsController extends BaseController {
     }
 
     /**
-     * Lets you enable or disable a subaccount
-     * @param    body    Required parameter: enable or disable subaccount
+     * Let's you fetch template data using template_id for your pepipost account.
+     * @param    templateId    Required parameter: Example: 
      * @return    Returns the Object response from the API call 
      */
-    public Object updateSubaccountsPATCH(
-                final Enableordisablesubacoount body
+    public Object getTemplateGET(
+                final int templateId
     ) throws Throwable {
 
-        HttpRequest _request = _buildUpdateSubaccountsPATCHRequest(body);
+        HttpRequest _request = _buildGetTemplateGETRequest(templateId);
         HttpResponse _response = getClientInstance().executeAsString(_request);
         HttpContext _context = new HttpContext(_request, _response);
 
-        return _handleUpdateSubaccountsPATCHResponse(_context);
+        return _handleGetTemplateGETResponse(_context);
     }
 
     /**
-     * Lets you enable or disable a subaccount
-     * @param    body    Required parameter: enable or disable subaccount
+     * Let's you fetch template data using template_id for your pepipost account.
+     * @param    templateId    Required parameter: Example: 
      */
-    public void updateSubaccountsPATCHAsync(
-                final Enableordisablesubacoount body,
+    public void getTemplateGETAsync(
+                final int templateId,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -70,7 +69,7 @@ public class SubaccountsController extends BaseController {
 
                 HttpRequest _request;
                 try {
-                    _request = _buildUpdateSubaccountsPATCHRequest(body);
+                    _request = _buildGetTemplateGETRequest(templateId);
                 } catch (Exception e) {
                     callBack.onFailure(null, e);
                     return;
@@ -80,7 +79,7 @@ public class SubaccountsController extends BaseController {
                 getClientInstance().executeAsStringAsync(_request, new APICallBack<HttpResponse>() {
                     public void onSuccess(HttpContext _context, HttpResponse _response) {
                         try {
-                            Object returnValue = _handleUpdateSubaccountsPATCHResponse(_context);
+                            Object returnValue = _handleGetTemplateGETResponse(_context);
                             callBack.onSuccess(_context, returnValue);
                         } catch (Exception e) {
                             callBack.onFailure(_context, e);
@@ -100,15 +99,20 @@ public class SubaccountsController extends BaseController {
     }
 
     /**
-     * Builds the HttpRequest object for updateSubaccountsPATCH
+     * Builds the HttpRequest object for getTemplateGET
      */
-    private HttpRequest _buildUpdateSubaccountsPATCHRequest(
-                final Enableordisablesubacoount body) throws IOException, APIException {
+    private HttpRequest _buildGetTemplateGETRequest(
+                final int templateId) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 
         //prepare query string for API call
-        StringBuilder _queryBuilder = new StringBuilder(_baseUri + "/subaccounts");
+        StringBuilder _queryBuilder = new StringBuilder(_baseUri + "/template");
+
+        //process query parameters
+        Map<String, Object> _queryParameters = new HashMap<String, Object>();
+        _queryParameters.put("template_id", templateId);
+        APIHelper.appendUrlWithQueryParameters(_queryBuilder, _queryParameters);
         //validate and preprocess url
         String _queryUrl = APIHelper.cleanUrl(_queryBuilder);
 
@@ -116,11 +120,10 @@ public class SubaccountsController extends BaseController {
         Map<String, String> _headers = new HashMap<String, String>();
         _headers.put("api_key", Configuration.apiKey);
         _headers.put("user-agent", BaseController.userAgent);
-        _headers.put("content-type", "application/json");
 
 
         //prepare and invoke the API call request to fetch the response
-        HttpRequest _request = getClientInstance().patchBody(_queryUrl, _headers, APIHelper.serialize(body));
+        HttpRequest _request = getClientInstance().get(_queryUrl, _headers, null);
 
         // Invoke the callback before request if its not null
         if (getHttpCallBack() != null) {
@@ -131,10 +134,10 @@ public class SubaccountsController extends BaseController {
     }
 
     /**
-     * Processes the response for updateSubaccountsPATCH
+     * Processes the response for getTemplateGET
      * @return An object of type Object
      */
-    private Object _handleUpdateSubaccountsPATCHResponse(HttpContext _context)
+    private Object _handleGetTemplateGETResponse(HttpContext _context)
             throws APIException, IOException {
         HttpResponse _response = _context.getResponse();
 

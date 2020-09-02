@@ -47,7 +47,7 @@ public class SubaccountsDeleteController extends BaseController {
      * @return    Returns the Object response from the API call 
      */
     public Object deleteSubaccountsDeleteDELETE(
-                final DeleteSubacoount body
+                final Deletesubacoount body
     ) throws Throwable {
 
         HttpRequest _request = _buildDeleteSubaccountsDeleteDELETERequest(body);
@@ -62,7 +62,7 @@ public class SubaccountsDeleteController extends BaseController {
      * @param    body    Required parameter: delete subaccount
      */
     public void deleteSubaccountsDeleteDELETEAsync(
-                final DeleteSubacoount body,
+                final Deletesubacoount body,
                 final APICallBack<Object> callBack
     ) {
         Runnable _responseTask = new Runnable() {
@@ -103,7 +103,7 @@ public class SubaccountsDeleteController extends BaseController {
      * Builds the HttpRequest object for deleteSubaccountsDeleteDELETE
      */
     private HttpRequest _buildDeleteSubaccountsDeleteDELETERequest(
-                final DeleteSubacoount body) throws IOException, APIException {
+                final Deletesubacoount body) throws IOException, APIException {
         //the base uri for api requests
         String _baseUri = Configuration.baseUri;
 
