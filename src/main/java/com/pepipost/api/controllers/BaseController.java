@@ -19,7 +19,7 @@ public abstract class BaseController {
      */
     private static HttpClient clientInstance = null;
     private static final Object syncObject = new Object();
-    protected static final String userAgent = "APIMATIC 2.0";
+    protected static final String userAgent = "pepi-sdk-java-v5.1";
 
     /**
      * Protected variable to keep reference of httpCallBack instance if user provides any
